@@ -23,26 +23,25 @@ let countState = new SharedState(0);
 export default countState;
 ```
 
-## We now want to share this instance of shared state between components or code files.
+### We now want to share this instance of shared state between components or code files.
 
 ```code
+//Component1.jsx
 import countState from "./countStateProvider.js";
 import { useState, useEffect } from "react";
 
 export default function Component1() {
-  const [localCount, setLocalCount] = useState(countState.get());
+  const [localCount, setLocalCount] = useState(null);
 
   useEffect(() => {
     let unsubscribe = countState.subscribe(setLocalCount);
 
     //cleanup during unmounting
-    return ()=>unsubscribe();
+    return () => unsubscribe();
   }, []);
 
   function increment() {
-    countState.publish(countState.get()+1);
-    //since synchronized by default, we can use the localCount as well
-    //countState.publish(localCount+1);
+    countState.publish(localCount + 1);
   }
 
   return (
@@ -52,4 +51,23 @@ export default function Component1() {
     </>
   );
 }
+
 ```
+
+```code
+//App.jsx
+import Component1 from "./Component1";
+
+function App() {
+  return (
+    <>
+      <Component1></Component1>
+      <Component1></Component1>
+    </>
+  );
+}
+
+export default App;
+```
+
+![alt text](output.png)

@@ -1,6 +1,6 @@
 {
   "name": "mz-shared-state",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,5 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  }
 }
