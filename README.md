@@ -12,7 +12,7 @@
 
 ### Let's say we want to share a counter between two components. We will first create a central provider and instantiate our shared state.
 
-```code
+```js
 //countStateProvider.js
 import SharedState from "mz-shared-state";
 
@@ -25,7 +25,7 @@ export default countState;
 
 ### We now want to share this instance of shared state between components or code files.
 
-```code
+```js
 //Component1.jsx
 import countState from "./countStateProvider.js";
 import { useState, useEffect } from "react";
@@ -54,7 +54,7 @@ export default function Component1() {
 
 ```
 
-```code
+```js
 //App.jsx
 import Component1 from "./Component1";
 
